@@ -122,4 +122,62 @@ def urlarr_into_percent_dic(url_arr,size):
         for x,value in enumerate(values):
             val_tuple += (value/check_letter_pixels(arr),)
         result[key] = val_tuple
-    return result
+    return resul
+
+def data_dict_to_excel(my_dict,file_name):
+    import collections
+    od = collections.OrderedDict(sorted(my_dict.items()))
+    data = {}
+    data['alphabet'] = []
+    data['left_side_pixels'] = []
+    data['verical_coincidence'] = []
+    data['horizontal_coincidence'] = []
+    data['from_bottom_dia_coincidence'] = []
+    data['from_top_dia_coincidence'] = []
+
+    for key,value in od.items():
+        data['alphabet'] +=[key]
+        data['left_side_pixels'] += [value[0]]
+        data['verical_coincidence'] += [value[1]]
+        data['horizontal_coincidence'] += [value[2]]
+        data['from_bottom_dia_coincidence'] += [value[3]]
+        data['from_top_dia_coincidence'] += [value[4]]
+    import pandas as pd
+    table = pd.DataFrame(data,columns=['alphabet','left_side_pixels','verical_coincidence','horizontal_coincidence',
+                                     'from_bottom_dia_coincidence','from_top_dia_coincidence'])
+    writer = pd.ExcelWriter('{}.xlsx'.format(file_name))
+    table.to_excel(writer,'lowercase 1')
+    writer.save()
+
+def img_url_arr_into_excel(url_arr,size,file_name):
+    import pandas as pd
+    import collections
+
+    my_dict = {}
+    for url in url_arr:
+        key = url.split("/")[-1].split(".")[0]
+        value = image_into_data_list(url,size)
+        arr = image_into_zero_one_array(url,size)
+        my_dict[key] = value/check_letter_pixels(arr)
+        
+    od = collections.OrderedDict(sorted(my_dict.items()))
+    data = {}
+    data['alphabet'] = []
+    data['left_side_pixels'] = []
+    data['verical_coincidence'] = []
+    data['horizontal_coincidence'] = []
+    data['from_bottom_dia_coincidence'] = []
+    data['from_top_dia_coincidence'] = []
+
+    for key,value in od.items():
+        data['alphabet'] +=[key]
+        data['left_side_pixels'] += [value[0]]
+        data['verical_coincidence'] += [value[1]]
+        data['horizontal_coincidence'] += [value[2]]
+        data['from_bottom_dia_coincidence'] += [value[3]]
+        data['from_top_dia_coincidence'] += [value[4]]
+    table = pd.DataFrame(data,columns=['alphabet','left_side_pixels','verical_coincidence','horizontal_coincidence',
+                                     'from_bottom_dia_coincidence','from_top_dia_coincidence'])
+    writer = pd.ExcelWriter('{}.xlsx'.format(file_name))
+    table.to_excel(writer,'lowercase 1')
+    writer.save()
