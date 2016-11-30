@@ -249,7 +249,7 @@ def y_crop(url):
 # 숫자를 차곡차곡 지정하기 위해서 폴더내에 이미 존재했던 파일들을 search함수를 통해 가장 높은 숫자값을 구한후 그 값에 1을 더한 값을 숫자값으로 저장한다.
 def crop_alphabet(url):
     import os
-    lines = xycrop(url)
+    lines = y_crop(url)
     for img in lines:
         width,height = img.size
         cropped = []
@@ -670,10 +670,9 @@ def y_cordinate(url):
             if arr[x][y] == 1:
                 satisfied =1
             if satisfied ==1 and 1 not in arr[x]:
-                xcrop.append(x)
+                ycrop.append(x)
                 satisfied = 0
     return ycrop
-
 
 
 # 이미지 내의 한줄로 구성된 문자들이 있을 경우 문자들을 구분해주는 흰 여백의 x좌표를 list로 반환한다.
@@ -692,6 +691,7 @@ def x_cordinate(url):
                 satisfied = 0
     return xcrop
 
+    
 # 이미지 객체를 받아 한줄로 구성된 문자들이 있을 경우 문자들을 구분해주는 흰 여백의 x좌표를 list로 반환한다.
 def x_cordinate_img(img):
     xcrop = [0]
