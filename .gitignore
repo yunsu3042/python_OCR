@@ -1,6 +1,7 @@
 
 # Created by https://www.gitignore.io/api/node,pycharm,java,c
-
+#pycharm
+.idea/
 ### Node ###
 # Logs
 logs
