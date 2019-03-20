@@ -1,7 +1,4 @@
 # 파이썬으로 OCR 구현하기 프로젝트  
-## 모든 함수는 PIL과 numpy 라이브러리가 설치된 환경을 필요로 합니다.  
-- from PIL import Image    
-- import numpy as np  
 
 - [x] 정사각 사이즈의 알파뱃 이미지의 URL을 입력받아, RGB값을 가진 numpy array로 변환해 numpy array를 리턴해주는 함수  
 - [x] RGB 3값을 튜플로 가지고있는 numpy array를 커스터마이징한 값에 따라 흑백 농도값만 갖는 gray scale numpy array를 리턴해주는 함수  
